@@ -5,6 +5,11 @@ It combines five independent optimizers — chunks, hoppers, dispensers, TNT and
 config, one GUI, and one `/cci` command, with TPS-aware load shedding, SQLite/MySQL history,
 PlaceholderAPI placeholders and optional Vault charging.
 
+[![release](https://img.shields.io/github/v/release/MayankPatil3/CubeCityOptimization?style=flat-square&color=7cffb2&label=release)](https://github.com/MayankPatil3/CubeCityOptimization/releases/latest)
+[![build](https://img.shields.io/github/actions/workflow/status/MayankPatil3/CubeCityOptimization/ci.yml?style=flat-square&label=build)](https://github.com/MayankPatil3/CubeCityOptimization/actions/workflows/ci.yml)
+[![license](https://img.shields.io/github/license/MayankPatil3/CubeCityOptimization?style=flat-square)](LICENSE)
+![Java](https://img.shields.io/badge/Java-21-ED8B00?style=flat-square&logo=openjdk&logoColor=white)
+
 ```
                  ┌──────────────────────────── CubeCityOptimization ────────────────────────────┐
                  │                                                                              │
