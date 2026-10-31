@@ -1,0 +1,117 @@
+# CubeCityOptimization
+# Every module with an enabled flag can be turned off independently. Reload with /cci reload.
+
+general:
+  # Log extra detail about throttled blocks and merged TNT.
+  debug: false
+  # How often the TPS sampler runs (ticks).
+  sample-interval-ticks: 40
+
+chunks:
+  enabled: true
+  # Applied to every player (Paper per-player view distance).
+  view-distance: 6
+  simulation-distance: 4
+  # Budget in chunks: 289 = 17x17 area, converted to radius r = (sqrt(n)-1)/2.
+  max-chunks-per-player: 289
+  # How often idle chunks (no players, entities or tile entities) are swept.
+  unload-delay-seconds: 30
+  # Set to true to also drop the per-world view distance when TPS is low.
+  adaptive: true
+
+cleanup:
+  enabled: true
+  # Scheduled cleanup passes; 0 disables the timer (manual /cci cleanup still works).
+  interval-seconds: 300
+  remove-dropped-items: true
+  item-min-age-seconds: 120
+  remove-xp-orbs: true
+  xp-min-age-seconds: 120
+  # Entities above this count in a single chunk are removed (oldest first).
+  max-entities-per-chunk: 64
+  # Never touch these entity types.
+  keep-entities: [ITEM_FRAME, ARMOR_STAND, VILLAGER, ITEM_DISPLAY, BLOCK_DISPLAY]
+
+hoppers:
+  enabled: true
+  # Minimum ticks between transfers enforced by the optimizer (vanilla is 8).
+  transfer-cooldown-ticks: 8
+  max-per-chunk: 24
+  # Refuse placing a hopper directly against another hopper.
+  disable-chains: true
+  # Only touch hoppers within range of a player (saves CPU on big worlds).
+  only-near-players: true
+  player-range: 96
+
+dispensers:
+  enabled: true
+  # Minimum ticks between two dispenses from the same block.
+  cooldown-ticks: 10
+  max-per-chunk: 16
+  # Burst protection: max dispenses per chunk inside one second.
+  max-per-second-per-chunk: 8
+
+tick:
+  enabled: true
+  # Below this TPS the plugin enters "pressure" mode.
+  tps-threshold: 17.0
+  # View distance forced while in pressure mode.
+  pressure-view-distance: 4
+  # Multiplier applied to hopper/dispenser cooldowns while in pressure mode.
+  pressure-cooldown-multiplier: 2
+  # Cancel natural mob spawns while in pressure mode.
+  pressure-spawn-throttle: true
+
+tnt:
+  enabled: true
+  # Primed TNT allowed per chunk.
+  max-per-chunk: 16
+  # Primed TNT inside this radius is merged into one explosion.
+  merge-radius: 4.0
+  # Cap the explosion power after merging.
+  max-explosion-power: 6.0
+  # Cap the number of blocks destroyed by a single explosion (0 = unlimited).
+  max-blocks-per-explosion: 120
+
+mobs:
+  enabled: true
+  # Mobs per world. 0 disables the global cap.
+  global-cap: 400
+  # Mobs per chunk. 0 disables the per-chunk cap.
+  per-chunk-cap: 12
+  auto-remove-excess: true
+  remove-interval-seconds: 60
+  hostile-only: false
+  exempt-named: true
+  exempt-tamed: true
+  # /summon marks mobs persistent, so this is off by default.
+  exempt-persistence: false
+
+gui:
+  enabled: true
+  title: "CubeCity Optimization"
+
+storage:
+  # sqlite or mysql
+  type: sqlite
+  sqlite:
+    file: cubecity.db
+  mysql:
+    host: localhost
+    port: 3306
+    database: cubecity
+    username: root
+    password: ""
+    use-ssl: false
+  # How often snapshots are written.
+  save-interval-seconds: 60
+  # Action rows older than this are pruned. 0 keeps everything.
+  retention-days: 30
+
+economy:
+  enabled: false
+  # Charged for /cci cleanup when Vault is present.
+  cleanup-cost: 0.0
+
+messages:
+  prefix: "<dark_aqua><bold>CubeCity</bold></dark_aqua> <gray>»</gray> "

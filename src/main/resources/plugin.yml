@@ -1,0 +1,44 @@
+name: CubeCityOptimization
+version: '${project.version}'
+main: city.cube.optimization.CubeCityOptimization
+api-version: '1.21'
+authors: [CubeCity]
+description: Chunk, hopper, dispenser, TNT, mob and tick optimization suite with GUI, SQLite/MySQL stats, PlaceholderAPI and Vault.
+softdepend: [PlaceholderAPI, Vault]
+
+commands:
+  cci:
+    description: CubeCity Optimization main command
+    usage: /cci <status|gui|cleanup|stats|chunks|hoppers|tnt|mobs|reload|help>
+    aliases: [cubecityoptimization, cco]
+    permission: cco.use
+
+permissions:
+  cco.use:
+    description: Basic access to /cci status and /cci help
+    default: true
+    children:
+      cco.status: true
+  cco.status:
+    default: true
+  cco.gui:
+    default: op
+  cco.cleanup:
+    default: op
+  cco.stats:
+    default: op
+  cco.reload:
+    default: op
+  cco.bypass.viewdistance:
+    description: Keep your own view distance untouched by the optimizer
+    default: false
+  cco.admin:
+    description: Full administrative access
+    default: op
+    children:
+      cco.status: true
+      cco.cleanup: true
+      cco.stats: true
+      cco.reload: true
+      cco.gui: true
+      cco.use: true
