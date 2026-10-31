@@ -32,7 +32,7 @@ PlaceholderAPI placeholders and optional Vault charging.
 
 ## Install
 
-1. Build (or drop a release jar in `plugins/`):
+1. Download the latest jar from the [releases page](https://github.com/MayankPatil3/CubeCityOptimization/releases/latest), or build it:
 
    ```bash
    mvn -B package
